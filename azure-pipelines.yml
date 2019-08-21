@@ -41,7 +41,7 @@ steps:
         --output table
       az vmss create -n $vmssName -g $rgName --instance-count 2 --image OpenLogic:CentOS-CI:7-CI:latest  --admin-username $userName  --admin-password $AdminPassword --data-disk-sizes-gb 4 --generate-ssh-keys  
 
-      az vmss run-command invoke -g $rgName -n vmssName --command-id RunShellScript \ --instance-id 0 --scripts "sudo touch /tmp/file1.txt && sudo curl -fsSL https://get.docker.com/ | sh"
-      az vmss run-command invoke -g $rgName -n vmssName --command-id RunShellScript \ --instance-id 1 --scripts "sudo touch /tmp/file1.txt && sudo curl -fsSL https://get.docker.com/ | sh"
+      az vmss run-command invoke -g $rgName -n vmssName --command-id RunShellScript  --instance-id 0 --scripts "sudo touch /tmp/file1.txt && sudo curl -fsSL https://get.docker.com/ | sh"
+      az vmss run-command invoke -g $rgName -n vmssName --command-id RunShellScript  --instance-id 1 --scripts "sudo touch /tmp/file1.txt && sudo curl -fsSL https://get.docker.com/ | sh"
  #    az vm run-command invoke -g $rgName -n $vmName --command-id RunShellScript --scripts "sudo touch /tmp/file1.txt && sudo curl -fsSL https://get.docker.com/ | sh"  --output table
  #    az vm open-port --port 3389 --resource-group myResourceGroup --name myVM
