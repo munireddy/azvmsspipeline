@@ -41,11 +41,7 @@ steps:
         --output table
       az vmss create -n $vmssName -g $rgName --instance-count 2 --image OpenLogic:CentOS-CI:7-CI:latest  --admin-username $userName  --admin-password $AdminPassword --data-disk-sizes-gb 4 --generate-ssh-keys  --output table
 
-      # az vmss run-command invoke -g $rgName -n $vmssName --command-id RunShellScript  --instance-id 0 --scripts "sudo touch /tmp/file1.txt && sudo curl -fsSL https://get.docker.com/ | sh"
-      
-   #   az vmss list-instance-connection-info \
-   #     --resource-group $rgName \
-   #     --name $vmssName
+
       az vmss list-instances -n $vmssName -g $rgName --query "[].id" --output tsv | \
                         az vmss run-command invoke --scripts 'sudo touch /tmp/file1.txt && sudo curl -fsSL https://get.docker.com/ | sh' \
                             --command-id RunShellScript --ids @-  
