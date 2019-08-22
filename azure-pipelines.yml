@@ -43,7 +43,7 @@ steps:
 
 
       az vmss list-instances -n $vmssName -g $rgName --query "[].id" --output tsv | \
-                        az vmss run-command invoke --scripts 'sudo apt-get update && sudo touch /tmp/file1.txt && sudo snap install -y docker' \
+                        az vmss run-command invoke --scripts 'sudo apt-get update && sudo touch /tmp/file1.txt && sudo apt-get install -y docker-ce' \
                             --command-id RunShellScript --ids @-  
  #    Centos vmss install command
  #    az vmss list-instances -n $vmssName -g $rgName --query "[].id" --output tsv | \
